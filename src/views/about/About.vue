@@ -11,8 +11,6 @@
 
 <script lang="ts">
 import {defineComponent,reactive,toRefs} from 'vue'
-
-
 export default defineComponent({
     name: "About",
     setup(){
@@ -28,7 +26,6 @@ export default defineComponent({
                 },
             ]
         })
-
         return{
             ...toRefs(state),
         }
@@ -58,7 +55,7 @@ export default defineComponent({
         }
     }
     .rightView{
-        width: 83%;
+        width: 79%;
         margin-bottom: 10px;
         background-color: #fff;
     }

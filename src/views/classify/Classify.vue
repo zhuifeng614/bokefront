@@ -1,11 +1,11 @@
 <template>
     <div class="classify">
         <div class="navBar">
-            <a-tabs default-active-key="1" :tab-position="mode" class="navItem" @tabClick="gitnavKey">
+            <a-tabs default-active-key="1" tab-position="left" class="navItem" @tabClick="gitnavKey">
                 <a-tab-pane v-for="i in 20" :key="i" :tab="`20-10-9`"></a-tab-pane>
             </a-tabs>
         </div>
-        <div class="leftView">
+        <div class="leftView" v-if="isShow">
             <div class="item">
                 <p class="title">今日起开始重构博客 采用es6+koa+nedb</p>
                 <p class="time">2020-07-07 09:09:32</p>
@@ -13,33 +13,9 @@
                 <p class="synopsis">网搭建的 让阿里云服务可以连接上的 这里推荐使用 code.aliyun.com2、dockerDockerfile 必须会写 如果不会 请移步   以及我之前写的如何将代码打包成镜像   创建镜像仓库时 设置打包方式和选择分支 确保提交代码到指定分支里 自动打包3、自动更新用阿里的容器服务部署应用 找到应用 建立触发器 勾选自动化部署</p>
                 <div class="fullText" @click="handSummary(11111)">阅读全文>></div>
             </div>
-
-             <div class="item">
-                <p class="title">今日起开始重构博客 采用es6+koa+nedb</p>
-                <p class="time">2020-07-07 09:09:32</p>
-                <div class="reading"><span>阅读：</span>61</div>
-                <p class="synopsis">网搭建的 让阿里云服务可以连接上的 这里推荐使用 code.aliyun.com2、dockerDockerfile 必须会写 如果不会 请移步   以及我之前写的如何将代码打包成镜像   创建镜像仓库时 设置打包方式和选择分支 确保提交代码到指定分支里 自动打包3、自动更新用阿里的容器服务部署应用 找到应用 建立触发器 勾选自动化部署</p>
-                <div class="fullText" @click="handSummary(11111)">阅读全文>></div>
-            </div>
-
-             <div class="item">
-                <p class="title">今日起开始重构博客 采用es6+koa+nedb</p>
-                <p class="time">2020-07-07 09:09:32</p>
-                <div class="reading"><span>阅读：</span>61</div>
-                <p class="synopsis">网搭建的 让阿里云服务可以连接上的 这里推荐使用 code.aliyun.com2、dockerDockerfile 必须会写 如果不会 请移步   以及我之前写的如何将代码打包成镜像   创建镜像仓库时 设置打包方式和选择分支 确保提交代码到指定分支里 自动打包3、自动更新用阿里的容器服务部署应用 找到应用 建立触发器 勾选自动化部署</p>
-                <div class="fullText" @click="handSummary(11111)">阅读全文>></div>
-            </div>
-
-             <div class="item">
-                <p class="title">今日起开始重构博客 采用es6+koa+nedb</p>
-                <p class="time">2020-07-07 09:09:32</p>
-                <div class="reading"><span>阅读：</span>61</div>
-                <p class="synopsis">网搭建的 让阿里云服务可以连接上的 这里推荐使用 code.aliyun.com2、dockerDockerfile 必须会写 如果不会 请移步   以及我之前写的如何将代码打包成镜像   创建镜像仓库时 设置打包方式和选择分支 确保提交代码到指定分支里 自动打包3、自动更新用阿里的容器服务部署应用 找到应用 建立触发器 勾选自动化部署</p>
-                <div class="fullText" @click="handSummary(11111)">阅读全文>></div>
-            </div>
-
-   
-
+        </div>
+        <div class="leftView" v-else>
+            <router-view />
         </div>
         <div class="rightView">
             <div class="recommend">
@@ -91,22 +67,24 @@ import { defineComponent,reactive,toRefs, } from 'vue'
 import { useRouter,RouteMeta } from "vue-router"
 export default defineComponent({
     name: "Classify",
-    setup(props){
-        console.log(props)
+    setup(){
         const state = reactive({
-            mode:"left",
+            isShow:true
         })
         const router = useRouter()
-        const handSummary = (essayId: number)=>{
-            router.push({ name: 'Summary', params:{essayId}})
+        const methods = {
+            handSummary:(essayId: number)=>{
+                state.isShow = false
+                router.push({ name: 'Summary', params:{essayId}})
+            },
+            gitnavKey:(index: number) =>{
+                console.log(index)
+            }
         }
-        const gitnavKey = (index: number) =>{
-            console.log(index)
-        }
+        
         return{
             ...toRefs(state),
-            handSummary,
-            gitnavKey
+            ...methods
         }
     }
 })
@@ -131,8 +109,7 @@ export default defineComponent({
     }
     .leftView{
         flex: 60%;
-        margin-left: 13%;
-        margin-top: 30px;
+        margin: 20px 0 10px 13%;
         background-color: #fff;
         padding: 20px;
         .item{

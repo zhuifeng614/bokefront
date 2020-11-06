@@ -223,7 +223,7 @@ export default defineComponent({
         .imgView{
             width: 180px;
             height: 180px;
-            background: url("~@/assets/logo.png") no-repeat;
+            /* background: url("~@/assets/logo.png") no-repeat; */
             background-size: 100%;
         }
         .brief{

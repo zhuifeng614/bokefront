@@ -24,7 +24,14 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "classify", //归档
         name: "Classify",
-        component: ()=> import("@/views/classify/Classify.vue")
+        component: ()=> import("@/views/classify/Classify.vue"),
+        children:[
+          {
+            path: "summary", //归档查看全文
+            name: "Summary",
+            component: ()=> import("@/views/summary/Summary.vue")
+          }
+        ]
       },
       {
         path: "project", //项目
@@ -58,11 +65,6 @@ const routes: Array<RouteRecordRaw> = [
           }
         ]
       },
-      {
-        path: "summary", //归档点击查看全文跳转的新页面
-        name: "Summary",
-        component: ()=> import("@/views/summary/Summary.vue")
-      }
     ]
   },
 ]

@@ -31,12 +31,12 @@ export default defineComponent({
     .viewContent{
         margin-top: 80px;
         width: 100%;
-        min-height: calc(100vh - 80px);
         display: flex;
         justify-content: center;
         background-color: #F1F1F1;
         .viewrouter{
             width: 1220px;
+            min-height: calc(100vh - 80px);
         }
     }
     .foot{

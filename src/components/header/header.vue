@@ -87,11 +87,32 @@ export default defineComponent({
         height: 100%;
         background-color: #fff;
         .logo{
-            width: 80px;
-            height: 80px;
-            background: url("~@/assets/logo.png") no-repeat;
+            width: 78px;
+            height: 77px;
+            background: url("~@/assets/imgs/profile.jpg") no-repeat;
             background-size: 100%;
+            border-radius: 50%;
+            	/* 调用动画 */
+			animation-name: animation;
+			/* 动画持续时间 */
+			animation-duration: 4s;
+			/* 动画形式 */
+			animation-timing-function: steps(8);
+			/* 动画方式默认有去无回 */
+			animation-direction: alternate;
+			/* 动画延迟时间 */
+			animation-delay: 1s;
+			/* 动画次数 2次*/
+			animation-iteration-count: infinite;
         }
+        @keyframes animation {
+			from{
+                transform: rotate(0deg);
+			}
+			to{
+                transform: rotate(360deg);	
+			}
+		}
         .navlink{
             position: relative;
             width: 90%;
