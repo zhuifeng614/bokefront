@@ -63,8 +63,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,reactive,toRefs, } from 'vue'
+import { defineComponent,reactive,toRefs,watch } from 'vue'
 import { useRouter,RouteMeta } from "vue-router"
+
+
 export default defineComponent({
     name: "Classify",
     setup(){
@@ -81,10 +83,12 @@ export default defineComponent({
                 console.log(index)
             }
         }
-        
+        // watch(()=> state.isShow,(to,form)=>{
+            
+        // })
         return{
             ...toRefs(state),
-            ...methods
+            ...methods,
         }
     }
 })
